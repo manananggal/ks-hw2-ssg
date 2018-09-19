@@ -12,7 +12,7 @@ cp -R images docs
 
 cat templates/top.html content/index.html templates/bottom.html > docs/index.html
 # Add page title
-sed -i '' 's/${page_title}/Home | MO Musial/' docs/index.html
+sed -i '' 's/${page_title}/Home/' docs/index.html
 # Add active class to menu item
 sed -i '' 's/${index_active_class}/ active/' docs/index.html
 sed -i '' 's/${blog_active_class}//' docs/index.html
@@ -26,7 +26,7 @@ sed -i '' 's/${about_current_class}//' docs/index.html
 
 cat templates/top.html content/blog.html templates/bottom.html > docs/blog.html
 # Add page title
-sed -i '' 's/${page_title}/Blog | MO Musial/' docs/blog.html
+sed -i '' 's/${page_title}/Blog/' docs/blog.html
 # Add active class to menu item
 sed -i '' 's/${index_active_class}//' docs/blog.html
 sed -i '' 's/${blog_active_class}/ active/' docs/blog.html
@@ -40,7 +40,7 @@ sed -i '' 's/${about_current_class}//' docs/blog.html
 
 cat templates/top.html content/projects.html templates/bottom.html > docs/projects.html
 # Add page title
-sed -i '' 's/${page_title}/Projects | MO Musial/' docs/projects.html
+sed -i '' 's/${page_title}/Projects/' docs/projects.html
 # Add active class to menu item
 sed -i '' 's/${index_active_class}//' docs/projects.html
 sed -i '' 's/${blog_active_class}//' docs/projects.html
@@ -54,7 +54,7 @@ sed -i '' 's/${about_current_class}//' docs/projects.html
 
 cat templates/top.html content/about.html templates/bottom.html > docs/about.html
 # Add page title
-sed -i '' 's/${page_title}/About | MO Musial/' docs/about.html
+sed -i '' 's/${page_title}/About/' docs/about.html
 # Add active class to menu item
 sed -i '' 's/${index_active_class}//' docs/about.html
 sed -i '' 's/${blog_active_class}//' docs/about.html
