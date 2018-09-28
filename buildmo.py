@@ -2,6 +2,33 @@
 # imports
 # adding Template library to be able to remove and replace stuff
 from string import Template
+import glob
+import os
+
+all_html_files = glob.glob("content/*.html") # ['content/blog.html', 'content/index.html', 'content/about.html', 'content/projects.html']
+print(all_html_files)
+pages = []
+
+def page_loop(page_list):
+    for page in page_list:
+        file_path = page
+        file_name = os.path.basename(file_path)
+        name_only, extension = os.path.splitext(file_name)
+
+        if name_only == "index":
+            name_only = "home"
+
+        pages.append({
+            "filename": page,
+            "title": name_only.capitalize(),
+            "output": "docs/" + file_name,
+        })
+    return pages
+
+pages = page_loop(all_html_files)
+print(pages)
+
+
 
 # global variables
 pages = [
