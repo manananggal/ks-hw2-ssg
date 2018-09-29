@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 # imports
 # adding Template library to be able to remove and replace stuff
-from string import Template
+# from string import Template
 import glob
 import os
+from jinja2 import Template
+
 
 all_html_files = glob.glob("content/*.html") # ['content/blog.html', 'content/index.html', 'content/about.html', 'content/projects.html']
 print(all_html_files)
@@ -27,8 +29,6 @@ def page_loop(page_list):
 
 pages = page_loop(all_html_files)
 print(pages)
-
-
 
 # global variables
 pages = [
@@ -89,8 +89,8 @@ pages = [
 # functions
 
 def main():
-    template_text = open('templates/base.html').read()
-    template = Template(template_text)
+    template_html = open('templates/base.html').read()
+    template = Template(template_html)
     site_pages = pages
     bring_shrubbery(site_pages, template)
 
@@ -102,7 +102,7 @@ def read_content(path):
 def bring_shrubbery(page_list, template_file):
     for page in page_list:
         content = read_content(page['content'])
-        rendered_page = template_file.safe_substitute(
+        rendered_page = template_file.render(
             page_title=page['page_title'],
             index_active_class=page['index_active_class'],
             index_current_class=page['index_current_class'],
