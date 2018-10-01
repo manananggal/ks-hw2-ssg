@@ -16,21 +16,17 @@
 <body>
 <!-- start of header section -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom">
-  <a class="navbar-brand{{index_active_class}}" href="index.html">Ari_Mewzeall{{index_current_class}}</a>
+  <a class="navbar-brand{% if page_title == 'Home' %} active{% endif %}" href="index.html">Ari_Mewzeall{% if page_title == 'Home' %} <span class="sr-only">(current)</span>{% endif %}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item{{blog_active_class}}">
-        <a class="nav-link" href="blog.html">Blog{{blog_current_class}}</a>
+      {% for item in nav %}
+      <li class="nav-item{% if item.title == page_title %} active{% endif %}">
+        <a class="nav-link"  href="{{ item.filename }}">{{ item.title }}{% if item.title == page_title %} <span class="sr-only">(current)</span>{% endif %}</a>
       </li>
-      <li class="nav-item{{projects_active_class}}">
-        <a class="nav-link" href="projects.html">Projects{{projects_current_class}}</a>
-      </li>
-      <li class="nav-item{{about_active_class}}">
-        <a class="nav-link" href="about.html">About{{about_current_class}}</a>
-      </li>
+      {% endfor %}
     </ul>
   </div>
 </nav>
