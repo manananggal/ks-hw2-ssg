@@ -1,15 +1,14 @@
 #!/usr/bin/python3
+
 # imports
 import glob
 import os
 from jinja2 import Template
 
 # global variables
-
 all_html_files = glob.glob("content/*.html") # ['content/blog.html', 'content/index.html', 'content/about.html', 'content/projects.html']
 
 # functions
-
 def get_filename(file):
     return os.path.basename(file)
 
@@ -65,7 +64,3 @@ def generate_site(page_list, template_file):
             content=content,
         )
         open(page['output_file'], 'w+').write(rendered_page)
-
-# invoke main function
-if __name__ == "__main__":
-    main()
