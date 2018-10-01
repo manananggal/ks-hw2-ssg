@@ -4,6 +4,8 @@
 import glob
 import os
 from jinja2 import Template
+import sys
+import textwrap
 
 # global variables
 all_html_files = glob.glob("content/*.html") # ['content/blog.html', 'content/index.html', 'content/about.html', 'content/projects.html']
@@ -44,11 +46,31 @@ def page_loop(page_list):
         })
     return pages
 
-def main():
-    template_html = open('templates/base.html').read()
+def new_content_page():
+    filename = input('Input filename (including .html): ')
+    title = get_title(filename)
+    template_html = open('templates/new_page.html').read()
     template = Template(template_html)
-    site_pages = page_loop(all_html_files)
-    generate_site(site_pages, template)
+    rendered_page = template.render(page_title=title)
+    open(f'content/{filename}', 'w+').write(rendered_page)
+
+def main():
+    if len(sys.argv) > 1:
+        command = sys.argv[1]
+        if command == "build":
+            template_html = open('templates/base.html').read()
+            template = Template(template_html)
+            site_pages = page_loop(all_html_files)
+            generate_site(site_pages, template)
+
+        elif command == "new":
+            new_content_page()
+    else:
+        print(textwrap.dedent('''
+            Usage:
+            Rebuild site:    python manage.py build
+            Create new page: python manage.py new
+            '''))
 
 def read_content(path):
     content = open(path).read()
