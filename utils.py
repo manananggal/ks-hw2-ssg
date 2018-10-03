@@ -8,10 +8,9 @@ import sys
 import textwrap
 
 # global variables
-all_html_files = glob.glob("content/*.html") # ['content/blog.html', 'content/index.html', 'content/about.html', 'content/projects.html']
+all_html_files = glob.glob("content/*.html")
 
 # functions
-
 def get_filename_no_ext(file):
     name_only, _ = os.path.splitext(os.path.basename(file))
     return name_only
