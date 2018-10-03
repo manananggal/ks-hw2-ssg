@@ -11,11 +11,9 @@ import textwrap
 all_html_files = glob.glob("content/*.html") # ['content/blog.html', 'content/index.html', 'content/about.html', 'content/projects.html']
 
 # functions
-def get_filename(file):
-    return os.path.basename(file)
 
 def get_filename_no_ext(file):
-    name_only, _ = os.path.splitext(get_filename(file))
+    name_only, _ = os.path.splitext(os.path.basename(file))
     return name_only
 
 def get_title(file):
@@ -30,7 +28,7 @@ def nav_loop(nav_list):
     for item in nav_list:
         if get_filename_no_ext(item) != "index":
             nav.append({
-                "filename": get_filename(item),
+                "filename": os.path.basename(item),
                 "title": get_title(item),
             })
     return nav
@@ -41,7 +39,7 @@ def page_loop(page_list):
         pages.append({
             "content": page,
             "title": get_title(page),
-            "output_file": "docs/" + get_filename(page),
+            "output_file": "docs/" + os.path.basename(page),
             "nav": nav_loop(page_list)
         })
     return pages
